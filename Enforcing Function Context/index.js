@@ -2,10 +2,10 @@ Function.prototype.bind = function (){
   var func = this; 
   var args1 = Array.prototype.slice.call(arguments);
   var context = args1.shift();
-  return function(a){
+  return function(){
     var args2 = Array.prototype.slice.call(arguments);
     var argsArr = args1.concat(args2)
-    func.apply(context, argsArr);
+    return func.apply(context, argsArr);
   }
 }
 
@@ -13,11 +13,14 @@ Function.prototype.bind = function (){
 function fn(n, a){
   this.name = n;
   this.age = a;
+  return this;
 }
 var obj = {};
 
 // bind(obj, fn);
 
 
-// var fn2 = fn.bind(obj, 'Ninja');
+var fn2 = fn.bind(obj, 'Ninja');
 // fn2(10);
+
+
